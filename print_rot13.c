@@ -14,19 +14,20 @@ int print_rot(va_list arguments, char *buf, unsigned int ibuf)
 	char rot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 	unsigned int i, j, k;
 	char nill[] = "(avyy)";
+	char *s;
 	
-	str = va_arg(arguments, char *);
-	if (str == NULL)
+	s = va_arg(arguments, char *);
+	if (s == NULL)
 	{
 		for (i = 0; nill[i]; i++)
 			ibuf = handl_buf(buf, nill[i], ibuf);
 		return (6);
 	}
-	for (i = 0; str[i]; i++)
+	for (i = 0; s[i]; i++)
 	{
 		for (k = j = 0; alpha[j]; j++)
 		{
-			if (str[i] == alpha[j])
+			if (s[i] == alpha[j])
 			{
 				k = 1;
 				ibuf = handl_buf(buf, rot[j], ibuf);
@@ -34,7 +35,7 @@ int print_rot(va_list arguments, char *buf, unsigned int ibuf)
 			}
 		}
 		if (k == 0)
-			ibuf = handl_buf(buf, str[i], ibuf);
+			ibuf = handl_buf(buf, s[i], ibuf);
 	}
 	return (i);
 }
